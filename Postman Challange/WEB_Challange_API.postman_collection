@@ -1,0 +1,3552 @@
+{
+	"info": {
+		"_postman_id": "d29bed73-e73e-4312-8a11-0b93b540fe3d",
+		"name": "WEB Challange API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26161442"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Sign Up Session Seller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"email\", response.user.email);\r",
+									"\r",
+									"pm.globals.set(\"email\", \"email\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function randomString(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
+									"    if (!minValue) {\r",
+									"        minValue = 3;\r",
+									"        maxValue = 10;\r",
+									"    }\r",
+									"\r",
+									"    if (!maxValue) {\r",
+									"        maxValue = minValue;\r",
+									"    }\r",
+									"\r",
+									"    let length = _.random(minValue, maxValue),\r",
+									"        randomString = \"\";\r",
+									"\r",
+									"    for (let i = 0; i < length; i++)\r",
+									"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
+									"    return randomString;\r",
+									"}\r",
+									"\r",
+									"pm.variables.set('randomString', randomString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user\": {\r\n    \"name\": \"Seller\",\r\n    \"email\": \"{{randomString}}@gmail.com\",\r\n    \"password\": \"seller\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{web_challange}}/users.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"users.json"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Sign Up Session Seller",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user\": {\r\n    \"name\": \"Seller\",\r\n    \"email\": \"{{randomString}}@gmail.com\",\r\n    \"password\": \"seller\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{web_challange}}/users.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"users.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:48:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNDgxMyIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY4NzE3ODg4OCwiZXhwIjoxNjg4Mzg4NDg4LCJqdGkiOiIwYTYxNDM3Yy03M2ZlLTQ2YjAtOTg4Ny1iYzdjYjMzNDdiYzcifQ.IWkqY_Wqq4OC-OA5Nvt7mP-c10WB5kHIbVLEgDiWefk"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"0c73bbd10578337f97c5e44f10ee87b2\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=pxplfxKhcM%2Ftyv2f1dllxRKjUAmbWg0ES5OPQU0CnATy%2BF7N5it4GRJNSMUg8RKl%2F6INtFYJR4WDZ24hMmCxnoiDdBrC5a0Xt%2BwU9KCHdtaLrabu%2FWrd4iWcofuOlwRYPGFdeIDUZ0CmzQkIfyY30rvQVOe3WF%2BgoHnjjQW5AgZWcpn1f5GWFmxLrVbmmeYb2pbjZiIy3wVFMnD1T%2FpsK5ygLGNVLsLFcr26JOQTXOF4piRhHCKVQYAdd6Qdnv66VANQJZSGjLoNk1P%2BvkusSyKhsFiT4uvO%2F%2B2dZDMhZrgnFriYpOVjQqhhyfEHRMk841FNg1m1%2BUtjZ1augwI1RsqngFyHU7I%2BJd5F%2FqOomTj0B4cb83LAuWb0HQse4p4AWpKPuhy1FzahqxUvidW1I2ywMcMYt%2FbgqGAtRpoI%2FVhCRr7JaRnCsqEhxVs%3D--ny%2FNyzGoYQ6M4sX7--pyhUHG6Fn4lLOXq6MhwYBg%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "fa65c20e-a099-4acc-9fd0-0b8adce85db0"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.290274"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 14813,\n        \"name\": \"Seller\",\n        \"email\": \"u8w@gmail.com\",\n        \"phone_number\": null,\n        \"address\": null\n    },\n    \"session\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNDgxMyIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY4NzE3ODg4OCwiZXhwIjoxNjg4Mzg4NDg4LCJqdGkiOiIwYTYxNDM3Yy03M2ZlLTQ2YjAtOTg4Ny1iYzdjYjMzNDdiYzcifQ.IWkqY_Wqq4OC-OA5Nvt7mP-c10WB5kHIbVLEgDiWefk\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Sign Up Session Buyer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"emailbuyer\", response.user.email);\r",
+									"\r",
+									"pm.globals.set(\"emailbuyer\", \"email\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function randomString(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
+									"    if (!minValue) {\r",
+									"        minValue = 3;\r",
+									"        maxValue = 10;\r",
+									"    }\r",
+									"\r",
+									"    if (!maxValue) {\r",
+									"        maxValue = minValue;\r",
+									"    }\r",
+									"\r",
+									"    let length = _.random(minValue, maxValue),\r",
+									"        randomString = \"\";\r",
+									"\r",
+									"    for (let i = 0; i < length; i++)\r",
+									"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
+									"    return randomString;\r",
+									"}\r",
+									"\r",
+									"pm.variables.set('randomString', randomString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user\": {\r\n    \"name\": \"Seller\",\r\n    \"email\": \"{{randomString}}@gmail.com\",\r\n    \"password\": \"seller\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{web_challange}}/users.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"users.json"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Sign Up Session Buyer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user\": {\r\n    \"name\": \"Seller\",\r\n    \"email\": \"{{randomString}}@gmail.com\",\r\n    \"password\": \"seller\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{web_challange}}/users.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"users.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:48:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNDgxNCIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY4NzE3ODkwNCwiZXhwIjoxNjg4Mzg4NTA0LCJqdGkiOiI1NGFkOTQ5OS0zZjI1LTQ4MjQtYWNlZi00NDRmMjc4ZTIwZDEifQ.3GSDXmFzHWShiWX2TWgBjaV0sDOVwbR73xMv3jmKaHc"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e78c7e96310bcf1b5e9df6faa4bd93c7\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=cze7Ma8I6mC9%2FoI11AHympQq%2FaJv%2Bjadb%2BZzjC6bqrxjc5WPC3Tmuf3PR%2BZCauHL4RlDSe6BvQ0FYwOzyZsxEtRLb9Z5YRyayawL%2FT1siPwNK8ZOktGCGbXzsHhF%2FBiY1RnOlfwTKkNccQqwyNgnZCNkO1ePtCHar6IDRUduMNCkSeTEpXB%2BXuHS1CzU%2FbUP71xg4S0fDTZ3KPzY4waTcijJYhweCCqmfsxT4Ac1nRS%2F7JmEyX2JqGgcFbJEI%2BMbd8BWWiZ4fzehj45FShZHJCRH%2FnqC6bF6eXlkjYB3N57ggI9W0hEEUnZNWLKF4IwfQtvJznCF3ek5ZEBCOcTZcuPkXm0L0LxXJnr%2BIu12QCg08EgRxaXNKvavvUTx%2Bnl%2BRXoi6BPHHbt7Hc5evwZ8rTBescd4SnTDpBMwURh9uE7x9KBq6TZ5q8CLG2M%3D--SOvNaTLAqC55Z600--i7bAHsaobPkFXwSrx%2FFH4Q%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "b73f6a2a-075a-45db-9afb-9ae4fa8bc3ef"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.289383"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 14814,\n        \"name\": \"Seller\",\n        \"email\": \"ojazyze7xl@gmail.com\",\n        \"phone_number\": null,\n        \"address\": null\n    },\n    \"session\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNDgxNCIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY4NzE3ODkwNCwiZXhwIjoxNjg4Mzg4NTA0LCJqdGkiOiI1NGFkOTQ5OS0zZjI1LTQ4MjQtYWNlZi00NDRmMjc4ZTIwZDEifQ.3GSDXmFzHWShiWX2TWgBjaV0sDOVwbR73xMv3jmKaHc\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Sign In Session Seller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"web_token\", response.session.token);\r",
+									"\r",
+									"pm.globals.set(\"web_token\", \"token\");\r",
+									"\r",
+									"pm.environment.set(\"user_id\", response.user.id);\r",
+									"\r",
+									"pm.globals.set(\"user_id\", \"id\");\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user\": {\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"seller\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{web_challange}}/users/sign_in.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"users",
+								"sign_in.json"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Sign In Session Seller",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user\": {\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"seller\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{web_challange}}/users/sign_in.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"users",
+										"sign_in.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:48:38 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNDgxNCIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY4NzE3ODkxOCwiZXhwIjoxNjg4Mzg4NTE4LCJqdGkiOiJlYmIyMWY2NS02YTRiLTQ5MzMtYjNkMy0wOWZjMzExZTBmOGUifQ.uIv3qJ1ihM7F3GME6UQk1Zmk7qbRPojozboC9yB4t8w"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"06a8939f3d1a30f6b964616a76a0c027\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=2M6gBFfj6uxk02nv4aUBGqgW9FwKW97fS%2BMwid8cGXDYJHxjXUoQg69vmAmdTDV6%2BaV7S0ZoCAiDvlKbkOPQAMuUYSZxKDmVd68Em8w7mlIFWOp593C7U%2FI9WgxbgvB3sDVGuJUIruOdJssFpnjjTa0n7wtfZ3hXeMbW1VWyR94%2FK7XOZDZzEOgx5WY6gUxbfoJrkXNLvaUek9ENpXUif5K2AaiVBuRLhldQ2YNlNbBJgqvFdRdUztYqX8UnmhqudHUG15HzhLNAgPHdlTfaGc5G9im7lV%2FutkOOvgGnU%2B%2FEWcs4ec95la%2BJV4V%2BQazmi2FRKdh0kYL7daPasHXnOfyFVYV29%2B7YUntO0OXndqXlH1rVX9I2pQCxZy9wnnA5Ht2yR%2Fh843GriaKCQwP6usR6L46bhL%2F0vVf3ICTm4BGP5NOisGZVm526jkc%3D--r8Y9c4YdJkXWVz%2Bn--QOy9DcNT8MaaHrOqp3s0sQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "16b5a4fc-df34-422c-8a4d-4d827798e4c4"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.010050"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 14814,\n        \"name\": \"Seller\",\n        \"email\": \"ojazyze7xl@gmail.com\",\n        \"phone_number\": null,\n        \"address\": null\n    },\n    \"session\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNDgxNCIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY4NzE3ODkxOCwiZXhwIjoxNjg4Mzg4NTE4LCJqdGkiOiJlYmIyMWY2NS02YTRiLTQ5MzMtYjNkMy0wOWZjMzExZTBmOGUifQ.uIv3qJ1ihM7F3GME6UQk1Zmk7qbRPojozboC9yB4t8w\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Sign In Session Buyer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"web_token_buyer\", response.session.token);\r",
+									"\r",
+									"pm.globals.set(\"web_token_buyer\", \"token\");\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user\": {\r\n    \"email\": \"{{emailbuyer}}\",\r\n    \"password\": \"seller\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{web_challange}}/users/sign_in.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"users",
+								"sign_in.json"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Sign In Session Buyer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user\": {\r\n    \"email\": \"{{emailbuyer}}\",\r\n    \"password\": \"seller\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{web_challange}}/users/sign_in.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"users",
+										"sign_in.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:48:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNDgxNCIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY4NzE3ODkzMywiZXhwIjoxNjg4Mzg4NTMzLCJqdGkiOiI4NmJhOWEwZi1mYmE2LTQzYjgtOGJiZS02Y2I0YWEwMTgxZmEifQ.m-AksTZU5FxbupJz1eVJJKAiP40dcUbqIB8sz4r_KWA"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"95650bbc12365622ec9e83c9ea0ef315\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=LOUvfzEktd7hvYdbnmRJfjLmMrUKUrA0e%2ByDVpZE6OpJGCVsblJspiVabIIqQ8CnTH2MnOonauzboHOOT%2FDwKmBjMKAVXXHFuURm4o9LX%2BxlXn9wsyFK%2FQSR0gBdze8CFkmg5XvNVlIEkLT%2FccVVDv8M5quOIUxkPFSNY0UKgzoeVhFPilzSr8KM37ginjOQNXoxY%2FKVIa9ppX6mcteqWDHqcrs6ev7m3rk1IQbJY4885BklDWBmuJls4qWJDN9KMsvVy8JBVZhRtVoB%2F8dfCRhnPHIPaJ%2Fbl8fcuFzaDSAdJVqZIapr80x5Looqd8piuWMaD0535%2FF3ZDP5H57NgLJVX5P0ywwMPvda8DOs3bvNJfoGZHb6esU7quHZLLN1rbmtvZQhdLgfOSmHCT3h5yCYliRw%2BqmSZqVdcVQnyVv4D7NTcQbkEyGIVcY%3D--odAvlF6tEsWbsEtY--ll5yJ%2B4kXT7ru2GQ2F%2FvUw%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "be3626d5-c803-44c5-89af-608d2b488784"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.011087"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 14814,\n        \"name\": \"Seller\",\n        \"email\": \"ojazyze7xl@gmail.com\",\n        \"phone_number\": null,\n        \"address\": null\n    },\n    \"session\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNDgxNCIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY4NzE3ODkzMywiZXhwIjoxNjg4Mzg4NTMzLCJqdGkiOiI4NmJhOWEwZi1mYmE2LTQzYjgtOGJiZS02Y2I0YWEwMTgxZmEifQ.m-AksTZU5FxbupJz1eVJJKAiP40dcUbqIB8sz4r_KWA\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "List Category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{web_challange}}/categories.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"categories.json"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{web_challange}}/categories.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"categories.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:49:13 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5411b7f44637465231bc27d78e1bb8ca\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "2f7fef09-c238-4985-bb7c-289004bde94f"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.005978"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categories\": [\n        {\n            \"id\": 1,\n            \"name\": \"Hobi\",\n            \"url\": \"https://secondhand.binaracademy.org/categories/1\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Kendaraan\",\n            \"url\": \"https://secondhand.binaracademy.org/categories/2\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Baju\",\n            \"url\": \"https://secondhand.binaracademy.org/categories/3\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Elektronik\",\n            \"url\": \"https://secondhand.binaracademy.org/categories/4\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Kesehatan\",\n            \"url\": \"https://secondhand.binaracademy.org/categories/5\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Category By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{web_challange}}/categories/:id.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"categories",
+								":id.json"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Category By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{web_challange}}/categories/:id.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"categories",
+										":id.json"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:49:29 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"0857934b89584f36010bbfd851c3e8d1\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "e9f1f147-4ec6-40e2-8289-ec700221d7f3"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.005834"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": {\n        \"id\": 5,\n        \"name\": \"Kesehatan\",\n        \"url\": \"https://secondhand.binaracademy.org/categories/5\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Update Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{web_challange}}/profiles.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"profiles.json"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{web_challange}}/profiles.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"profiles.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:49:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5fe3658b6b6f62a818bd6c8753d352bd\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=BDN0W67Jm5dWeA5fue0UUL%2FdROiydW0zwZsSNEwB39mxSzJLEjiQEtQvO65vuJQ1S7VAV6AtYhwdpEtpeV%2BonN%2Fjny0KzJtS0JGZ9Mfua3%2B3JDK5WbNdt%2BJLoCiZ3jepMiTNMsrWZzuV8c%2BbiL0Ajeho7fH2Pua1sFXo1tfhYz0jhe%2BvLLZ0hYXhcg5q5z%2BkPHgvm0fHJqgwHOSTu6At0zW8I77KgTqlnMnnqjndhclf9c3ANWWIINqPLFG1ehVdDLvlLK3lsxrVEUwjuEfste4dhb2CHL%2BVv4GudVz4ZcPMF4kbgkarpYKJHcADis9HCxJZAfnoPQxEAIEHn9Ha4jcGnAST91JuB1HTu7E%2FR7sp269G596sqsC5aWXm2FOdxj93CthjvsANo7vwW3n9eSOlse85u0ijuARglpdhGlCuB6qxgsigtQd%2FcNM%3D--pAx9YVHUGYam0GAB--kqm35lUNXxs%2BWX8SpFqf7w%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "19c97bff-629c-4ac9-9576-a38925e01e68"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.010720"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 14814,\n        \"name\": \"Seller\",\n        \"email\": \"ojazyze7xl@gmail.com\",\n        \"phone_number\": null,\n        \"address\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Profile Buyer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token_buyer}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{web_challange}}/profiles.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"profiles.json"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Profile Buyer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token_buyer}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{web_challange}}/profiles.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"profiles.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:50:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5fe3658b6b6f62a818bd6c8753d352bd\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=eMdehBSzEYQthezbHlAuTRaiSZhA6hWpatd33CYZd2FOyKYAhFWIMxJm2w4F2ni%2F4PMUo9%2Fq1cQpa2W%2FXTXxlIQbh2FRmmaX2Y2vBYPeZ%2F%2B5pxFGzqS%2FbfkBs%2FwGJk%2BQ8oqKYtAah%2FfXO6iA%2BXPYMZ2d%2BU5HLUEnBVATTBnWrr5JN31SqR9ob6gZzdE9xOABcA3g7T6bgzQj%2FTGBZOiGtxeQCOXpm9wLevg0JaeZM8R6yfYt35fJq6O7XCr9FlotrVeDabWLv1ke6uNwTY9WPJCrzC9P%2BYJt3QobIlAZvn7wiT6DWwVzEUdMRV3%2BfIwbi5NtPtmzXAFWQgQnI220Kfqe2pvEX5ug1JBrsRMQQ8oMQWxrFUg9c7BXXgRKyrfmZDTAn6Wxn5s%2FX0PKHK2TJ1Pktd38jkvf066hJF8o2Fom9Pi0QwHPcnJ%2BkxQ%3D--g2f%2FVcjiiWsAhvw0--ZSFrgNvTBrV6s6jIhKUMvg%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "a64a515e-4877-4eb2-b1e7-e379e7b015fb"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.007951"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 14814,\n        \"name\": \"Seller\",\n        \"email\": \"ojazyze7xl@gmail.com\",\n        \"phone_number\": null,\n        \"address\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user[name]",
+									"value": "seller 11",
+									"type": "text"
+								},
+								{
+									"key": "user[phone_number]",
+									"value": "08123456700",
+									"type": "text"
+								},
+								{
+									"key": "user[address]",
+									"value": "Jl kita semua",
+									"type": "text"
+								},
+								{
+									"key": "user[city_id]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "user[avatar]",
+									"type": "file",
+									"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-5.jpg"
+								},
+								{
+									"key": "user[email]",
+									"value": "seller10@gmail.com",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{web_challange}}/profiles.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"profiles.json"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Seller",
+									"disabled": true
+								},
+								{
+									"key": "phone_number",
+									"value": "0899945234",
+									"disabled": true
+								},
+								{
+									"key": "address",
+									"value": "Jl Kampung",
+									"disabled": true
+								},
+								{
+									"key": "city_id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "avatar",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Profile",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user[name]",
+											"value": "seller 11",
+											"type": "text"
+										},
+										{
+											"key": "user[phone_number]",
+											"value": "08123456700",
+											"type": "text"
+										},
+										{
+											"key": "user[address]",
+											"value": "Jl kita semua",
+											"type": "text"
+										},
+										{
+											"key": "user[city_id]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "user[avatar]",
+											"type": "file",
+											"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-5.jpg"
+										},
+										{
+											"key": "user[email]",
+											"value": "seller10@gmail.com",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{web_challange}}/profiles.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"profiles.json"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Seller",
+											"disabled": true
+										},
+										{
+											"key": "phone_number",
+											"value": "0899945234",
+											"disabled": true
+										},
+										{
+											"key": "address",
+											"value": "Jl Kampung",
+											"disabled": true
+										},
+										{
+											"key": "city_id",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "avatar",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:50:31 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9375ab9f7b35159d25cbae7905378adc\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=oioEhuVFYjy2IQUxBGoUHFW%2B0AMBEcx18NZ4fdNVkaBgmHf%2Fg8E3zr3F9ptGnqi%2BzELrOoAy3cXppc3Rk%2B8tuRl4N9GymWwrQAr0qtWSG2x61NTqAxW8QJR5nOlN5Yw9vjN9ii4CUqVLHW%2Bj%2FmmzVifKrCvooYUvRzGwyGJaR2HT9UXpTMKN%2F1en7gksxNF4jlo0foUyulGUwDFoiszB%2FuYyw1gezdNWoNwkFFIsERqxWxFO03pzaRq%2BjWfNYitIU%2FLSFaOepy8mY7IshTuxQxRnxv8E6NglNSDZAq34rV2J4ZoV1f%2BxPzOgYj%2FDPR5W1s57xUU8jYPHH9uj1jP7fMZAhsokhtf1dAF4WZIpC4Di0Jtgjn5QCA9OXoXsIbYPELtpXf4HSNy9Etarr%2FG9SSvG3xaXuXEP6UNH2kdqB9Y%2BTy4TWsORSYnZYls%3D--rOHVNq%2Bah7Zkbf6u--qhqtPfdnKye%2FzwZgj4PkDQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "9543c2cd-4533-48d8-92f0-2a91ccb57574"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "1.176745"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 14814,\n        \"name\": \"seller 11\",\n        \"email\": \"ojazyze7xl@gmail.com\",\n        \"phone_number\": \"08123456700\",\n        \"address\": \"Jl kita semua\",\n        \"city\": {\n            \"id\": 2,\n            \"name\": \"Jogja\"\n        },\n        \"avatar\": {\n            \"filename\": \"sample-5.jpg\",\n            \"url\": \"/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ3FuIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f30f32398a3612785cbdb2232bfa299f422aeb9f/sample-5.jpg\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Profile Buyer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token_buyer}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user[name]",
+									"value": "seller 11",
+									"type": "text"
+								},
+								{
+									"key": "user[phone_number]",
+									"value": "08123456700",
+									"type": "text"
+								},
+								{
+									"key": "user[address]",
+									"value": "Jl kita semua",
+									"type": "text"
+								},
+								{
+									"key": "user[city_id]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "user[avatar]",
+									"type": "file",
+									"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-5.jpg"
+								},
+								{
+									"key": "user[email]",
+									"value": "seller10@gmail.com",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{web_challange}}/profiles.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"profiles.json"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Seller",
+									"disabled": true
+								},
+								{
+									"key": "phone_number",
+									"value": "0899945234",
+									"disabled": true
+								},
+								{
+									"key": "address",
+									"value": "Jl Kampung",
+									"disabled": true
+								},
+								{
+									"key": "city_id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "avatar",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Profile Buyer",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token_buyer}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user[name]",
+											"value": "seller 11",
+											"type": "text"
+										},
+										{
+											"key": "user[phone_number]",
+											"value": "08123456700",
+											"type": "text"
+										},
+										{
+											"key": "user[address]",
+											"value": "Jl kita semua",
+											"type": "text"
+										},
+										{
+											"key": "user[city_id]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "user[avatar]",
+											"type": "file",
+											"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-5.jpg"
+										},
+										{
+											"key": "user[email]",
+											"value": "seller10@gmail.com",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{web_challange}}/profiles.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"profiles.json"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Seller",
+											"disabled": true
+										},
+										{
+											"key": "phone_number",
+											"value": "0899945234",
+											"disabled": true
+										},
+										{
+											"key": "address",
+											"value": "Jl Kampung",
+											"disabled": true
+										},
+										{
+											"key": "city_id",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "avatar",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:51:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3bcd048e228aaec8ccd04b5a9b0c5da8\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=JXpF%2BA3eu4F4m7jf3sZkU5Sz2T12hHzwNTZJget7b20mFUVF9iYKIAvYCULgveoqy4dbtu7Fl3FJ1tY87v1EM7dfJ4AnYxZxShDxrU90IlJSO4XvP2scf8%2BNbjVDr5Pxh6Yl70R9AG0iK9ecUgz4xe0hHjHlMB6o%2B85X8qKI52shYoCI%2BF7Pmfd7iLe4O6UtsBmeP7IYDVpBdCPngQsQL66IWjeTOZH%2FuRxbdnbV0ZH4%2F50P5zp8QUSv6s4u5A%2BXufmxJedZe5iVy1xPGN2Un2meLlcIzftmCqqfDynKTIkUQ18aAux9STPdNiNBN4p72IvSUDjrwIWXTQ5hzgWXE%2B5UO9turFhkJCkaC0Oymhw0uHzCSuzSblgMVSHnyhaIHtNcob1WgHRUeUpqEoF24P2izzNwEis8tlnT9gP3%2BHJVIPPxqBCISiFt0wU%3D--K%2FCYLkWo5upJu2gX--4uKt1%2FIU4J57ECtclcFwPQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "6cbd7c10-d659-4005-9805-9343bee14b3d"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "1.003102"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 14814,\n        \"name\": \"seller 11\",\n        \"email\": \"ojazyze7xl@gmail.com\",\n        \"phone_number\": \"08123456700\",\n        \"address\": \"Jl kita semua\",\n        \"city\": {\n            \"id\": 2,\n            \"name\": \"Jogja\"\n        },\n        \"avatar\": {\n            \"filename\": \"sample-5.jpg\",\n            \"url\": \"/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE9uIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4a2bda01090fd110aa699b554327abfa053a8062/sample-5.jpg\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"product_id\", response.product.id);\r",
+									"\r",
+									"pm.globals.set(\"product_id\", \"id\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product[name]",
+									"value": "Poco",
+									"type": "text"
+								},
+								{
+									"key": "product[price]",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "product[description]",
+									"value": "HP Terbaru",
+									"type": "text"
+								},
+								{
+									"key": "product[status]",
+									"value": "published",
+									"type": "text"
+								},
+								{
+									"key": "product[category_id]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "product[image]",
+									"type": "file",
+									"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{web_challange}}/products.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"products.json"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "product[name]",
+											"value": "Poco",
+											"type": "text"
+										},
+										{
+											"key": "product[price]",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "product[description]",
+											"value": "HP Terbaru",
+											"type": "text"
+										},
+										{
+											"key": "product[status]",
+											"value": "published",
+											"type": "text"
+										},
+										{
+											"key": "product[category_id]",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "product[image]",
+											"type": "file",
+											"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{web_challange}}/products.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"products.json"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:51:29 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Location",
+									"value": "https://secondhand.binaracademy.org/products/8679"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b7ed823deae9ce71c1462f3cba993934\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=K%2Fi3UPBQIO3DwxpGQHkybKJXiJ%2BhJlVN%2BwfF9kxkL%2FWrWIbXr%2ByHzp4nHjjXVAvpzwNyVo%2FNcn363qMkXHUvJRlQmhKRf2NeJcES5mgmYv%2BxZAdzvx5aya6b5zK2oYWuBfAgMvwtG6zyYZyQIMF2j9q4Vh7SdROWjAOCWZVnDyUq1qFGYLra8PNdFvya2YXwPWk7kuK98oX9Bjt3kXcX77%2Ff%2F%2FQz8kWOGY0t2fneQwvJ9SE6Pkf%2Bc720PAK%2FEiDWm2K1q9SkxQVXiJ5ATJyk5t53d89ciacO4fMF2uiJtmJ9eSXeesCd2z7KTQqomqpuY1Q%2BmUJbiS83tF%2BuBPuW%2BAbrPBd311%2F3u4GNBSwEbbFPFQpr9K14q24Nh%2BE9WqwFFHjWGI0Ak6M4qVojxVS9I1yHLGyxS7ZnGhdWlUzc%2BtFcMlUDIqZX1JjVbAw%3D--Q9%2FtHyUIzTOV3xFr--HskVIycDdrbaMTjyKzbT5g%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "d920341c-84c9-493e-bdcf-cdccaaef39e4"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.029794"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"product\": {\n        \"id\": 8679,\n        \"name\": \"Poco\",\n        \"price\": 1000,\n        \"description\": \"HP Terbaru\",\n        \"category_id\": 5,\n        \"user_id\": 14814,\n        \"created_at\": \"2023-06-19T12:51:29.665Z\",\n        \"updated_at\": \"2023-06-19T12:51:29.665Z\",\n        \"url\": \"https://secondhand.binaracademy.org/products/8679.json\",\n        \"user\": {\n            \"id\": 14814,\n            \"name\": \"seller 11\",\n            \"email\": \"ojazyze7xl@gmail.com\",\n            \"phone_number\": \"08123456700\",\n            \"address\": \"Jl kita semua\",\n            \"city\": {\n                \"id\": 2,\n                \"name\": \"Jogja\"\n            },\n            \"avatar\": {\n                \"filename\": \"sample-5.jpg\",\n                \"url\": \"/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE9uIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4a2bda01090fd110aa699b554327abfa053a8062/sample-5.jpg\"\n            }\n        },\n        \"images\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Product Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"product_iddel\", response.product.id);\r",
+									"\r",
+									"pm.globals.set(\"product_iddel\", \"id\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product[name]",
+									"value": "Poco",
+									"type": "text"
+								},
+								{
+									"key": "product[price]",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "product[description]",
+									"value": "HP Terbaru",
+									"type": "text"
+								},
+								{
+									"key": "product[status]",
+									"value": "published",
+									"type": "text"
+								},
+								{
+									"key": "product[category_id]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "product[image]",
+									"type": "file",
+									"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{web_challange}}/products.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"products.json"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Product Delete",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "product[name]",
+											"value": "Poco",
+											"type": "text"
+										},
+										{
+											"key": "product[price]",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "product[description]",
+											"value": "HP Terbaru",
+											"type": "text"
+										},
+										{
+											"key": "product[status]",
+											"value": "published",
+											"type": "text"
+										},
+										{
+											"key": "product[category_id]",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "product[image]",
+											"type": "file",
+											"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{web_challange}}/products.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"products.json"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:51:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Location",
+									"value": "https://secondhand.binaracademy.org/products/8680"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63a9c83191da9e25719627d3cd143b9d\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=Lfia0Eidu7SRIWTend3Q8Ee815GbFYUqaNHFiOCqk8HoEN%2BGH13c9LQP7n%2FJ4AR%2FRzV6G1GnSGhWBPSbsetZC2%2FmKsYc9vz%2BYP7eTY%2FHK7m4mCk8G9dM7lRimn3DapaEjj7ryLz292N0wbuyWcYNJKElLhrqcGynwOKNq5ZQmwNbnptibVTRLIYET1RmMP5E6DQADS%2BWwek9W3dImBuImxqeD5JA12QHzwKGgeAGEcUwbMLd1aHWHcjF%2Bvpqldn1NhnZrSoXz3DFrug9FKodbClrcrRDl3oQVt%2Bc4UvxI0LufKEmfMthiY20hWhd2BF%2FCVgdwpyt0grj4Ik9WOkkVrs4j9Wm7TIemV1B%2FNMBFmyejDe0jBcf8FqOo6TxOc1b%2FAUTRYmz1Gm2JnQloKL4tRnN27rIY9mvwLBCx7sD2y%2FmZZqF7nVUsT5BhdU%3D--NjeCFQ6gvFZr1NUE--gAlRmhOEnU3D4eFibw43IQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "d52ed8c9-5738-4565-8cd5-ea4603c09832"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.027389"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"product\": {\n        \"id\": 8680,\n        \"name\": \"Poco\",\n        \"price\": 1000,\n        \"description\": \"HP Terbaru\",\n        \"category_id\": 5,\n        \"user_id\": 14814,\n        \"created_at\": \"2023-06-19T12:51:37.787Z\",\n        \"updated_at\": \"2023-06-19T12:51:37.787Z\",\n        \"url\": \"https://secondhand.binaracademy.org/products/8680.json\",\n        \"user\": {\n            \"id\": 14814,\n            \"name\": \"seller 11\",\n            \"email\": \"ojazyze7xl@gmail.com\",\n            \"phone_number\": \"08123456700\",\n            \"address\": \"Jl kita semua\",\n            \"city\": {\n                \"id\": 2,\n                \"name\": \"Jogja\"\n            },\n            \"avatar\": {\n                \"filename\": \"sample-5.jpg\",\n                \"url\": \"/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE9uIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4a2bda01090fd110aa699b554327abfa053a8062/sample-5.jpg\"\n            }\n        },\n        \"images\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "List Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{web_challange}}/products.json?user_id={{user_id}}",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"products.json"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "{{user_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{web_challange}}/products.json?user_id={{user_id}}",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"products.json"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "category_id",
+											"value": "4",
+											"disabled": true
+										},
+										{
+											"key": "user_id",
+											"value": "{{user_id}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:51:45 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"132e126559358c69f50613d142cd1705\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=9o3DFJowJuTU%2FOFxFdcqFrid7BPAZrHk53%2BtuCl7NDs6nh%2FBm7Z2G4zxULoIojpnNBmfUSMyGgM73Lyx1Q%2FQ2K7zRnI%2FievNCbSyH8FJNkU5c43CGzNoBndpAuv8RSJwdHcyGcvHufRMG22SkkuAok6MESTE0vCOL9%2F%2Ft%2BvNiG5Mk0SHu1YzefxrGxvW%2BFPsQqhBBYA1Bm8BhrKX06Nu89ussU0UfkNzru5GwKONzs4GBT7NWPii9gl42aSpZuOskpSzXCArOq4ax227gbQq97dl%2F%2FrLLRinnVIScX3i%2Fh8TyZ%2BnD2el4MCN9Hpm1%2BKsgPMJ6mCwntmexpRYWtOEg72TlbrZdEQ6WbVkBOf6UOVhCwyrj43tQ5JWFrF4D5%2BZxeExas66eCFwll1JrOyYRibZRO7B4RjOiYhHkqXmuKvgX3lkWJ9%2FNBIbJBU%3D--joN%2BzTee2226LVqR--tp3WZPJ20eTGyvZ6YFJsfQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "7dc1f093-c339-4556-a171-48b42e36357f"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.027145"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"page_next\": null,\n        \"page_previous\": null,\n        \"page_size\": 10,\n        \"page_count\": 1,\n        \"total\": 2\n    },\n    \"products\": [\n        {\n            \"id\": 8679,\n            \"name\": \"Poco\",\n            \"price\": 1000,\n            \"description\": \"HP Terbaru\",\n            \"category_id\": 5,\n            \"user_id\": 14814,\n            \"created_at\": \"2023-06-19T12:51:29.665Z\",\n            \"updated_at\": \"2023-06-19T12:51:29.665Z\",\n            \"url\": \"https://secondhand.binaracademy.org/products/8679.json\",\n            \"user\": {\n                \"id\": 14814,\n                \"name\": \"seller 11\",\n                \"email\": \"ojazyze7xl@gmail.com\",\n                \"phone_number\": \"08123456700\",\n                \"address\": \"Jl kita semua\",\n                \"city\": {\n                    \"id\": 2,\n                    \"name\": \"Jogja\"\n                },\n                \"avatar\": {\n                    \"filename\": \"sample-5.jpg\",\n                    \"url\": \"/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE9uIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4a2bda01090fd110aa699b554327abfa053a8062/sample-5.jpg\"\n                }\n            },\n            \"images\": []\n        },\n        {\n            \"id\": 8680,\n            \"name\": \"Poco\",\n            \"price\": 1000,\n            \"description\": \"HP Terbaru\",\n            \"category_id\": 5,\n            \"user_id\": 14814,\n            \"created_at\": \"2023-06-19T12:51:37.787Z\",\n            \"updated_at\": \"2023-06-19T12:51:37.787Z\",\n            \"url\": \"https://secondhand.binaracademy.org/products/8680.json\",\n            \"user\": {\n                \"id\": 14814,\n                \"name\": \"seller 11\",\n                \"email\": \"ojazyze7xl@gmail.com\",\n                \"phone_number\": \"08123456700\",\n                \"address\": \"Jl kita semua\",\n                \"city\": {\n                    \"id\": 2,\n                    \"name\": \"Jogja\"\n                },\n                \"avatar\": {\n                    \"filename\": \"sample-5.jpg\",\n                    \"url\": \"/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE9uIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4a2bda01090fd110aa699b554327abfa053a8062/sample-5.jpg\"\n                }\n            },\n            \"images\": []\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Product By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://secondhand.binaracademy.org/products/:id.json",
+							"protocol": "https",
+							"host": [
+								"secondhand",
+								"binaracademy",
+								"org"
+							],
+							"path": [
+								"products",
+								":id.json"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{product_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Product By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://secondhand.binaracademy.org/products/:id.json",
+									"protocol": "https",
+									"host": [
+										"secondhand",
+										"binaracademy",
+										"org"
+									],
+									"path": [
+										"products",
+										":id.json"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{product_id}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:52:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b7ed823deae9ce71c1462f3cba993934\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=DrWWGkifC9mSuOV5bz46pkSiUJIWA%2B5HMVakVIyp7u4U2inuI8HAATXE1R8oohzt5WvlL6bT6Zwt0%2BpcPWDz4Nz3k%2BViP1XzGqlq5ZpAz6qw%2Fbu48bukpPvriKHOoILMGuhCrLcfVWi3ag1Vyfb9ZdQKudrk2PNi1v6jOV5iJLQQnOEKeQcapC%2FzEn1vnRXZnojrejlO6r8qonC5DPHg065fZLfgqUSehVaLqjlR46Ov5VJkB4nn4ntfOKSG0Fp2C7edIICFTH2sfuo6DgBspd5oPOAAbQyU3eL8xlDyB8oPuM0I8jtJeuTIHCv1CCaMgiUAtMC4lMdNy0JxBryLFcOXX1jhurwdbHEXVaMD%2FqS2yLXVMch1nUyEFrSlficY5XS8Q9B5k%2BMBb1WNOdWqMa3b%2BHRjFhfwxUWVscWALtMNvjD4vwsrFKArlHk%3D--Pfgl8BhMeciCKVq5--W1b6ySFA%2FIdHlf3NZNRP5Q%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "01083c81-6d0c-4102-90f7-73eb50f60488"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.020094"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"product\": {\n        \"id\": 8679,\n        \"name\": \"Poco\",\n        \"price\": 1000,\n        \"description\": \"HP Terbaru\",\n        \"category_id\": 5,\n        \"user_id\": 14814,\n        \"created_at\": \"2023-06-19T12:51:29.665Z\",\n        \"updated_at\": \"2023-06-19T12:51:29.665Z\",\n        \"url\": \"https://secondhand.binaracademy.org/products/8679.json\",\n        \"user\": {\n            \"id\": 14814,\n            \"name\": \"seller 11\",\n            \"email\": \"ojazyze7xl@gmail.com\",\n            \"phone_number\": \"08123456700\",\n            \"address\": \"Jl kita semua\",\n            \"city\": {\n                \"id\": 2,\n                \"name\": \"Jogja\"\n            },\n            \"avatar\": {\n                \"filename\": \"sample-5.jpg\",\n                \"url\": \"/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE9uIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4a2bda01090fd110aa699b554327abfa053a8062/sample-5.jpg\"\n            }\n        },\n        \"images\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Product Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product[name]",
+									"value": "Laptop Baru Nih",
+									"type": "text"
+								},
+								{
+									"key": "product[price]",
+									"value": "9999",
+									"type": "text"
+								},
+								{
+									"key": "product[description]",
+									"value": "TER BARU DAH",
+									"type": "text"
+								},
+								{
+									"key": "product[status]",
+									"value": "published",
+									"type": "text"
+								},
+								{
+									"key": "product[category_id]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "product[images]",
+									"type": "file",
+									"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-5.jpg"
+								},
+								{
+									"key": "product[persisted_images]",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{web_challange}}/products/:id.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"products",
+								":id.json"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{product_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Change Product Data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "product[name]",
+											"value": "Laptop Baru Nih",
+											"type": "text"
+										},
+										{
+											"key": "product[price]",
+											"value": "9999",
+											"type": "text"
+										},
+										{
+											"key": "product[description]",
+											"value": "TER BARU DAH",
+											"type": "text"
+										},
+										{
+											"key": "product[status]",
+											"value": "published",
+											"type": "text"
+										},
+										{
+											"key": "product[category_id]",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "product[images]",
+											"type": "file",
+											"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-5.jpg"
+										},
+										{
+											"key": "product[persisted_images]",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{web_challange}}/products/:id.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"products",
+										":id.json"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{product_id}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:52:17 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Location",
+									"value": "https://secondhand.binaracademy.org/products/8679"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"997cee0531a93bf6f61f5e46a4bf13c2\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=H%2F5yxTtdi97aiFX4p9%2FovUJV021tkL8wTdGEvkrrFqHKpmvCSIX%2Blh7R3WhiEGCagtXdYhsbAeBUBD5pTWy7SzVVd%2Fx4xui2x79611u1GbzTwYPtUlm6f5oGKsVam4oEky3xxdJ6pwJXxeKYDSxOqB1Q1rYmgkfGWaz3iC6Gtz9f0ox3DGgZRvGilsLOMx6bdo%2BudGnZRk0t%2Fctqp1RAfJVqU4iSbn%2BYI95ICSpUQTp93pZL9QxBuNLgmTd6q4MBW30znPhR7QizOXHbgKegIdYOWjX6E%2BaujkrqTNMXpMw6AE1y5sDds8FvH0gywc%2FHR5tYzQUdrm3xyOOInjzCzmrzpYIPjLW19gVC6ZdiE0Bv%2FW2rFMB0CwJPwNffXiXz3VeX24IZzEJWHFgNCVJ%2Bwwwz55%2BMklxs9m7o3Ah7cQS7%2BlfxgLDjk9PPo6A%3D--m7jDZ0VPt9oxK3MQ--nZZlkwmufHWdP7gNJiN5og%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "293d5b1d-2c9f-4b88-ae32-b2c71f053d16"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.029165"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"product\": {\n        \"id\": 8679,\n        \"name\": \"Laptop Baru Nih\",\n        \"price\": 9999,\n        \"description\": \"TER BARU DAH\",\n        \"category_id\": 5,\n        \"user_id\": 14814,\n        \"created_at\": \"2023-06-19T12:51:29.665Z\",\n        \"updated_at\": \"2023-06-19T12:52:17.599Z\",\n        \"url\": \"https://secondhand.binaracademy.org/products/8679.json\",\n        \"user\": {\n            \"id\": 14814,\n            \"name\": \"seller 11\",\n            \"email\": \"ojazyze7xl@gmail.com\",\n            \"phone_number\": \"08123456700\",\n            \"address\": \"Jl kita semua\",\n            \"city\": {\n                \"id\": 2,\n                \"name\": \"Jogja\"\n            },\n            \"avatar\": {\n                \"filename\": \"sample-5.jpg\",\n                \"url\": \"/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE9uIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4a2bda01090fd110aa699b554327abfa053a8062/sample-5.jpg\"\n            }\n        },\n        \"images\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{web_challange}}/products/:id.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"products",
+								":id.json"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{product_iddel}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Product",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{web_challange}}/products/:id.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"products",
+										":id.json"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{product_iddel}}"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:52:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=T32i2OcgBpDvJ3IlU0D1DatZweL5i%2FzpPRmCBBKekldqBuACNMPMyEUjPaqMIYovj%2Faf5V%2FQoSivQwjDm8QaO6MeFzvfXHEiVJYoLEkK6bO%2B9xew4XyNHdGb3Yp6LslMNfH%2FEBnXBa%2FV5FkjTZsILPMz%2BbPcX0vH%2B8VcO2pCSzbQ%2F5b93PLgvVCMqBXDM%2FVm69LJv1QfQm%2BdwkLmNMZv0qSTqoEZ11ZoMiWULo%2FY%2Fvi1RMag6cBswTKZcHDDs694%2FpVAQmWu4Hb%2FT62%2FhoNFFTyNheKSX1hgQSsFG5pUVmulxZ75DqCjtCDpbAvZwizj%2FxUovK6MBvqGEIN2GY2KAdB76QD1snTwcvTlc6faHuUYvxyapJ6vcCoSKKjD6YRh33uIeJBNBreq09RNwnD0X1yTpf9yPvQ9e9q1hbfftrlvQzhJ3%2Bt9HI%2F9V44%3D--tSEXdY76Yo6Zav47--zIIgSVVUf%2BnbJG96SAVmhQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "bf883557-5864-4d4d-b6e3-646e0fcf659b"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.014076"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Offers",
+			"item": [
+				{
+					"name": "Offers Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token_buyer}}",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"offer\": {\r\n    \"price\": 1234,\r\n    \"to_id\": 14814,\r\n    \"product_id\": 8679\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{web_challange}}/offers.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"offers.json"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Offers Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token_buyer}}",
+										"type": "text"
+									},
+									{
+										"key": "accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"offer\": {\r\n    \"price\": 1234,\r\n    \"to_id\": 14814,\r\n    \"product_id\": 8679\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{web_challange}}/offers.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"offers.json"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:58:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Location",
+									"value": "https://secondhand.binaracademy.org/offers/7500"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3ace0968118195d7b628cb398873b543\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=He3xArZQnBadGV%2Bkke3FnpXrmaM1oagPHh7eD6BjFGThZfDTUofXrVVpFtetqTjocloagbydwLgUMX1GIHd41pUvzvhdOn98v6pTnuYFpKr0Gssc0BmE9AKSWQWM5jCTnrEaj5fq6NnAuheam4ma6UGLVj0AQMoYuHFszil00lVf8nwgdzNTRq8zdEhFSjepEUJOeE60cWiYGm4AHzxVo5cyR5NoBFxTXi8k2xlXU9RqXPAKMf51%2FX4%2FasjBbrbFkn5WuKhIirvCu%2FrocEpixveaW0bJLILgtITpr7L9s7eV5D4GyC%2Bv9hCGyfrjzH9h6vP94fyyAkL%2F9uKyrxKihxuhMpAHItbgx%2BVpXywH7%2FXqsGDQN58RzeLRGztYkwnKtyOKbtAvar6lAKRc555SUQ6Ss5ed7eWcWAvkYNXP7IwOKqBYA6BsMN8Sj0w%3D--zzg5pCmZHpHXVIow--kvwqU7cxOgk9sbsvDXhb8Q%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "b0c0e635-f150-4a3f-8988-eb94bad6188d"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.034617"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"offer\": {\n        \"id\": 7500,\n        \"price\": 1234,\n        \"status\": \"initiated\",\n        \"created_at\": \"2023-06-19T12:58:40.824Z\",\n        \"updated_at\": \"2023-06-19T12:58:40.824Z\",\n        \"product\": {\n            \"id\": 8679,\n            \"name\": \"Laptop Baru Nih\",\n            \"price\": 9999,\n            \"description\": \"TER BARU DAH\",\n            \"category_id\": 5,\n            \"user_id\": 14814,\n            \"created_at\": \"2023-06-19T12:51:29.665Z\",\n            \"updated_at\": \"2023-06-19T12:58:40.828Z\",\n            \"url\": \"https://secondhand.binaracademy.org/products/8679.json\",\n            \"user\": {\n                \"id\": 14814,\n                \"name\": \"seller 11\",\n                \"email\": \"ojazyze7xl@gmail.com\",\n                \"phone_number\": \"08123456700\",\n                \"address\": \"Jl kita semua\",\n                \"city\": {\n                    \"id\": 2,\n                    \"name\": \"Jogja\"\n                },\n                \"avatar\": {\n                    \"filename\": \"sample-5.jpg\",\n                    \"url\": \"/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE9uIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4a2bda01090fd110aa699b554327abfa053a8062/sample-5.jpg\"\n                }\n            },\n            \"images\": []\n        },\n        \"to\": {\n            \"id\": 14814,\n            \"name\": \"seller 11\",\n            \"email\": \"ojazyze7xl@gmail.com\",\n            \"phone_number\": \"08123456700\",\n            \"address\": \"Jl kita semua\",\n            \"city\": {\n                \"id\": 2,\n                \"name\": \"Jogja\"\n            },\n            \"avatar\": {\n                \"filename\": \"sample-5.jpg\",\n                \"url\": \"/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE9uIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4a2bda01090fd110aa699b554327abfa053a8062/sample-5.jpg\"\n            }\n        },\n        \"from\": {\n            \"id\": 14820,\n            \"name\": \"seller 11\",\n            \"email\": \"tn2n@gmail.com\",\n            \"phone_number\": \"08123456700\",\n            \"address\": \"Jl kita semua\",\n            \"city\": {\n                \"id\": 2,\n                \"name\": \"Jogja\"\n            },\n            \"avatar\": {\n                \"filename\": \"sample-5.jpg\",\n                \"url\": \"/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaTJuIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e3e72885d3407aa61588f672fdaf412555e45eb9/sample-5.jpg\"\n            }\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get product By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{web_challange}}/users/:user_id/offers.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"users",
+								":user_id",
+								"offers.json"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "{{user_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get product By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{web_challange}}/users/:user_id/offers.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"users",
+										":user_id",
+										"offers.json"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "{{user_id}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 12:59:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"075c58a96672fc2f6ee3f91318a94ed4\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=gCM53vaYmJAbBnYBJOO2AESzYgP2BIc5Wa3rX%2B%2BK5%2FPglg11kx%2FTZ0l8ekMWeCWwWHHtjs4Su58SfBtX618wtld36XIDamQwBcSM9aNNaZn%2FkF%2Bt2r15swyC6R%2FkgWPC%2FqgynAB8PrQfGOfg%2F66LCB5T0m0LaEa6CLtUmJPr3aOcj5CwLcwNYOlOMrdnIhOothRkwkBRIy589v1czK7V9yihdWINBYtsYr9J%2FoFL5%2Bi%2Fo%2BnTCHGQuTV02umrZQrk73TR1jJH8A7xB9fyAtJuHjevFeCB5v3v296JqbyrdNvcU2HQXubfMznS72uzGKZ0NFXcaYkICRHq%2BzgenDPS8QvewU7o%2B3APWYrD3Kt9elNAj8vk0ps1gUgaUpn7UkNNjaHn2KuK0XLt7b5T%2BVgbUA%2BwvucoDWays6RXN0TMPRokU3TgN3oigdTakRo%3D--nEwta%2F%2BT%2FUFbsipU--FqiPV2SLGJUi3GO49AFfvQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "dbe113da-d0a5-4851-a9e0-3613fc9c53e3"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.014728"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"page_next\": null,\n        \"page_previous\": null,\n        \"page_size\": 10,\n        \"page_count\": 1,\n        \"total\": 0\n    },\n    \"offers\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Accepted / Denied Offers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{web_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"offer\": {\r\n    \"status\": \"accepted\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{web_challange}}/offers/:id.json",
+							"host": [
+								"{{web_challange}}"
+							],
+							"path": [
+								"offers",
+								":id.json"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{user_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Accepted / Denied Offers",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{web_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"offer\": {\r\n    \"status\": \"accepted\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{web_challange}}/offers/:id.json",
+									"host": [
+										"{{web_challange}}"
+									],
+									"path": [
+										"offers",
+										":id.json"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{user_id}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 13:00:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Link",
+									"value": "</assets/application-8719702cfbda8df80ef05ec97d6e3439f691b635cf6f90772d44af13d07cdc5f.css>; rel=preload; as=style; nopush"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a48a4610aae05eacc864a5f31dba516a\""
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_binar_playground_secondhand_marketplace_session=GaufOZXetcTm%2F2zPxp6aXt6hJyLLQ9Q%2BOaKJo1z3tVc1UHQdoSTOtnlFX1VMCKM2W6K0qV8jswcPLbwebGcMx66spwDD%2BgReW4vLBq4dovWo1%2FR70t%2FlbXQixg%2FAzPlCERmzzqDLqdBGNF%2FzTu3Vh6lrJICiHN74d84DzF%2FOZBQn28NBL8y%2B8qP7YSxDNQv21oGhkaHTgO%2BbW5Tn4SGOn%2B8J82ajcfHKbrEdZQYnAJknenH0vCEUMv0EStVAtiDtnIGNHugCx6eFRTnULcHiX5qDgShVv%2BICSOwD%2FLPlEgLe9e5Ek2%2FaxN%2FleWW8HaAnvozEkXmQFGi7VKOcJfpdf3Bzz3bnwe9c8iTvdisTXmd8lGjnbT5u6CzikK1Ug%2BA%2Fgu6cf1Hw38AWdcrikGNbqX28xm5zvxCXUNnLlWaj2dyYQYP3i3TzCS68jbk%3D--FPDTi1nE4zRTNQjE--PLhhg5o90oEZuQY6zscgiQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "af81a178-a14b-4348-bfce-5d0ff15fe7b1"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.050476"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html>\n    <head>\n        <title>SecondHand</title>\n        <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n        <meta name=\"csrf-param\" content=\"authenticity_token\" />\n        <meta name=\"csrf-token\" content=\"B1CYF2ORV_pTA6C6i55dDM9VqxKVshkbZ4wzoQmnA0_gk1akBXEUeeQ4vgq8xxlQAYLHISC7tTXCZdz9Ot6k_g\" />\n        <link rel=\"stylesheet\" href=\"/assets/application-8719702cfbda8df80ef05ec97d6e3439f691b635cf6f90772d44af13d07cdc5f.css\" media=\"all\" data-turbo-track=\"reload\" />\n        <script src=\"/assets/application-129503345137b5d28c19109dabc42b97ed2206ca1c50e66a68eac5b5353990e4.js\" data-turbo-track=\"reload\" defer=\"defer\"></script>\n    </head>\n    <body>\n        <nav class=\"navbar navbar-expand-lg navbar-light bg-white shadow fixed-top\">\n            <div class=\"container\">\n                <a class=\"navbar-brand px-5 py-3\" href=\"/\"></a>\n                <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                    <span class=\"navbar-toggler-icon\"></span>\n                </button>\n                <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n                    <form class=\"d-flex ms-0 ms-lg-4 my-4 my-lg-0\" method=\"GET\" action=\"/\" role=\"search\">\n                        <div class=\"input-group rounded-pill bg-light p-1 search\">\n                            <input name=\"q\" class=\"form-control bg-transparent border-0 form-search\" type=\"search\" placeholder=\"Cari di sini ...\" aria-label=\"Search\" value=\"\">\n                            <i class=\"bi bi-search input-group-text bg-transparent border-0\"></i>\n                        </div>\n                    </form>\n                    <div class=\"ms-auto\">\n                        <ul class=\"navbar-nav\">\n                            <li class=\"nav-item me-0 me-lg-2 fs-5\" aria-current=\"page\">\n                                <a class=\"nav-link d-flex align-items-center \" href=\"/products\">\n                                    <i class=\"bi bi-list-ul me-4 me-lg-0\"></i>\n                                    <span class=\"d-block d-lg-none fs-6\">Produk Saya</span>\n                                </a>\n                            </li>\n                            <li class=\"nav-item me-0 me-lg-2 fs-5 d-block d-xl-none position-relative\">\n                                <a class=\"nav-link d-flex align-items-center\" href=\"/notifications\">\n                                    <i class=\"bi bi-bell me-4 me-lg-0\"></i>\n                                    <span class=\"d-block d-lg-none fs-6\">Notifikasi</span>\n                                </a>\n                            </li>\n                            <li class=\"nav-item dropdown me-0 me-lg-2 fs-5 d-none d-xl-block position-relative\">\n                                <a class=\"nav-link dropdown-toggle position-relative\" href=\"#\" role=\"button\" data-bs-toggle=\"dropdown\">\n                                    <i class=\"bi bi-bell\"></i>\n                                </a>\n                                <ul class=\"dropdown-menu notification-dropdown-menu px-4\">\n                                    <li class=\"p-2\">Tidak ada notifikasi</li>\n                                </ul>\n                            </li>\n                            <li class=\"nav-item fs-5 d-block d-lg-none\">\n                                <a class=\"nav-link d-flex align-items-center\" href=\"/profiles\">\n                                    <i class=\"bi bi-person me-4 me-lg-0\"></i>\n                                    <span class=\"d-block d-lg-none fs-6\">Profil Saya</span>\n                                </a>\n                            </li>\n                            <li class=\"nav-item fs-5 d-block d-lg-none\">\n                                <form action=\"/users/sign_out\" accept-charset=\"UTF-8\" method=\"post\">\n                                    <input type=\"hidden\" name=\"_method\" value=\"delete\" autocomplete=\"off\" />\n                                    <input type=\"hidden\" name=\"authenticity_token\" value=\"ZMg0p4F3kiDYUJHDw4biAVQvDEVs25cjsrv7fjjnseSylZRs69zpgYSCFmOQwpEpcEuejLnT8shIcwFR7NPy2A\" autocomplete=\"off\" />\n                                    <button name=\"button\" type=\"submit\" class=\"nav-link btn btn-link btn-sm text-decoration-none fs-5 logout-button\">\n                                        <i class=\"bi bi-arrow-bar-left me-3\"></i>\n                                        <span class=\"fs-6\">Keluar</span>\n                                    </button>\n                                </form>\n                            </li>\n                            <li class=\"nav-item dropdown fs-5 d-none d-lg-block\">\n                                <a class=\"nav-link dropdown-toggle d-flex align-items-center\" href=\"#\" role=\"button\" data-bs-toggle=\"dropdown\">\n                                    <i class=\"bi bi-person me-4 me-lg-0\"></i>\n                                    <span class=\"d-block d-lg-none fs-6\">Profil Saya</span>\n                                </a>\n                                <ul class=\"dropdown-menu\">\n                                    <li>\n                                        <a class=\"nav-user\" href=\"/profiles\">\n                                            <div class=\"d-flex align-items-center justify-content center flex-column py-2\">\n                                                <img class=\"img-avatar w-100 rounded-4 mb-2\" src=\"https://secondhand.binaracademy.org/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaTJuIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e3e72885d3407aa61588f672fdaf412555e45eb9/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFLUUFXa0NrQUU9IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--68ce5b37660f0527e00bd1e60af75a7b48156984/sample-5.jpg\" />\n                                                <div class=\"card-body text-center\">\n                                                    <div class=\"fs-5 fw-bold\">seller</div>\n                                                    <div class=\"fs-6 text-black-50\">Jogja</div>\n                                                </div>\n                                            </div>\n                                        </a>\n                                    </li>\n                                    <li>\n                                        <hr class=\"dropdown-divider\">\n                                    </li>\n                                    <li>\n                                        <form action=\"/users/sign_out\" accept-charset=\"UTF-8\" method=\"post\">\n                                            <input type=\"hidden\" name=\"_method\" value=\"delete\" autocomplete=\"off\" />\n                                            <input type=\"hidden\" name=\"authenticity_token\" value=\"kL-5r3kX14l2-mnaiDy53xZRITMIvnL_sA-H5SSBx8lG4hlkE7ysKCoo7nrbeMr3MjWz-t22FxRKx33K8LWE9Q\" autocomplete=\"off\" />\n                                            <button name=\"button\" type=\"submit\" class=\"btn btn-link text-decoration-none\">\n                                                <i class=\"bi bi-arrow-bar-left me-3\"></i>\n            Keluar\n                                            </button>\n                                        </form>\n                                    </li>\n                                </ul>\n                            </li>\n                        </ul>\n                        <!-- TODO: Move this somewhere convinient -->\n                        <script>\n  var notifications = document.querySelectorAll(\"a.notification\")\n\n  notifications.forEach((notification) => {\n    if (notification.dataset.notificationRead == \"false\") {\n      notification.addEventListener('click', async function () {\n        await fetch(`/notifications/${notification.dataset.notificationId}/read`, {\n          credentials: \"same-origin\",\n          method: \"PUT\"\n        });\n      });\n    }\n  })\n</script>\n                    </div>\n                </div>\n            </div>\n        </nav>\n        <section class=\"pt-5 mt-5\">\n            <section class=\"mt-lg-5 mb-5 w-100 d-flex gap-lg-5\">\n                <div class=\"promo left bg-success rounded-end flex-grow-1 align-self-center d-none d-lg-block\"></div>\n                <div class=\"promo center flex-grow-1 bg-warning rounded-lg-4 rounded-0\">\n                    <div class=\"row p-5\">\n                        <div class=\"col\">\n                            <h1 class=\"fw-bold mb-4\">Bulan Ramadhan\n                                <br>Banyak diskon!\n                            </h1>\n                            <h6 class=\"fs-5 fw-normal\" >Diskon Hingga</h6>\n                            <h5 class=\"display-6 text-danger fw-bold\">60%</h5>\n                        </div>\n                        <div class=\"col\">\n      </div>\n                    </div>\n                </div>\n                <div class=\"promo right bg-info rounded-start flex-grow-1 align-self-center d-none d-lg-block\"></div>\n            </section>\n            <section class=\"container\">\n                <h5 class=\"fw-bold mb-4\">Telusuri Kategori</h5>\n                <nav class=\"nav row gap-4 px-2 px-lg-0\">\n                    <a class=\"btn btn-alt-primary col rounded-4 py-2 px-4 d-inline-flex align-items-center active\" href=\"/\">\n                        <i class=\"bi bi-search me-3 fs-4\"></i>\n      Semua\n                    </a>\n                    <a class=\"btn btn-alt-primary col rounded-4 py-2 px-4 d-inline-flex align-items-center false\" href=\"/?category_id=1\">\n                        <i class=\"bi bi-search me-3 fs-4\"></i>\n        Hobi\n                    </a>\n                    <a class=\"btn btn-alt-primary col rounded-4 py-2 px-4 d-inline-flex align-items-center false\" href=\"/?category_id=2\">\n                        <i class=\"bi bi-search me-3 fs-4\"></i>\n        Kendaraan\n                    </a>\n                    <a class=\"btn btn-alt-primary col rounded-4 py-2 px-4 d-inline-flex align-items-center false\" href=\"/?category_id=3\">\n                        <i class=\"bi bi-search me-3 fs-4\"></i>\n        Baju\n                    </a>\n                    <a class=\"btn btn-alt-primary col rounded-4 py-2 px-4 d-inline-flex align-items-center false\" href=\"/?category_id=4\">\n                        <i class=\"bi bi-search me-3 fs-4\"></i>\n        Elektronik\n                    </a>\n                    <a class=\"btn btn-alt-primary col rounded-4 py-2 px-4 d-inline-flex align-items-center false\" href=\"/?category_id=5\">\n                        <i class=\"bi bi-search me-3 fs-4\"></i>\n        Kesehatan\n                    </a>\n                </nav>\n                <div class=\"row my-5 g-5\" id='products'>\n                    <div class=\"col-12 col-md-4 col-lg-3\">\n                        <a class=\"product-card\" href=\"/products/8679\">\n                            <div class=\"card px-0 border-0 shadow h-100 pb-4 rounded-4\">\n                                <img alt=\"Download file\" class=\"card-img img-product-thumbnail p-3 rounded-4 overflow-hidden\" src=\"/placeholder.webp\" />\n                                <div class=\"card-body text-decoration-none\">\n                                    <h5 class=\"card-title\">Laptop Baru Nih</h5>\n                                    <p class=\"card-text text-black-50 text-small\">Kesehatan</p>\n                                    <h5 class=\"card-text\">Rp 9.999</h5>\n                                </div>\n                            </div>\n                        </a>\n                    </div>\n                    <div class=\"col-12 col-md-4 col-lg-3\">\n                        <a class=\"product-card\" href=\"/products/8676\">\n                            <div class=\"card px-0 border-0 shadow h-100 pb-4 rounded-4\">\n                                <img class=\"card-img img-product-thumbnail p-3 rounded-4 overflow-hidden\" src=\"https://secondhand.binaracademy.org/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ1NuIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b59037ad00f2662556c40c3f352e6849004ad237/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUFXa0NBQUU9IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--b50863606d6ba2f597650ed7335384ba20cf4712/c-d-x-PDX_a_82obo-unsplash.jpg\" />\n                                <div class=\"card-body text-decoration-none\">\n                                    <h5 class=\"card-title\">Headphone XZ-500</h5>\n                                    <p class=\"card-text text-black-50 text-small\">Elektronik</p>\n                                    <h5 class=\"card-text\">Rp 29.000</h5>\n                                </div>\n                            </div>\n                        </a>\n                    </div>\n                    <div class=\"col-12 col-md-4 col-lg-3\">\n                        <a class=\"product-card\" href=\"/products/8674\">\n                            <div class=\"card px-0 border-0 shadow h-100 pb-4 rounded-4\">\n                                <img alt=\"Download file\" class=\"card-img img-product-thumbnail p-3 rounded-4 overflow-hidden\" src=\"/placeholder.webp\" />\n                                <div class=\"card-body text-decoration-none\">\n                                    <h5 class=\"card-title\">Laptop Baru Nih</h5>\n                                    <p class=\"card-text text-black-50 text-small\">Kesehatan</p>\n                                    <h5 class=\"card-text\">Rp 9.999</h5>\n                                </div>\n                            </div>\n                        </a>\n                    </div>\n                    <div class=\"col-12 col-md-4 col-lg-3\">\n                        <a class=\"product-card\" href=\"/products/8633\">\n                            <div class=\"card px-0 border-0 shadow h-100 pb-4 rounded-4\">\n                                <img alt=\"Download file\" class=\"card-img img-product-thumbnail p-3 rounded-4 overflow-hidden\" src=\"/placeholder.webp\" />\n                                <div class=\"card-body text-decoration-none\">\n                                    <h5 class=\"card-title\">LNP_9728</h5>\n                                    <p class=\"card-text text-black-50 text-small\">Hobi</p>\n                                    <h5 class=\"card-text\">Rp 100.000</h5>\n                                </div>\n                            </div>\n                        </a>\n                    </div>\n                    <div class=\"col-12 col-md-4 col-lg-3\">\n                        <a class=\"product-card\" href=\"/products/8632\">\n                            <div class=\"card px-0 border-0 shadow h-100 pb-4 rounded-4\">\n                                <img alt=\"Download file\" class=\"card-img img-product-thumbnail p-3 rounded-4 overflow-hidden\" src=\"/placeholder.webp\" />\n                                <div class=\"card-body text-decoration-none\">\n                                    <h5 class=\"card-title\">Buku editted</h5>\n                                    <p class=\"card-text text-black-50 text-small\">Baju</p>\n                                    <h5 class=\"card-text\">Rp 300.000</h5>\n                                </div>\n                            </div>\n                        </a>\n                    </div>\n                    <div class=\"col-12 col-md-4 col-lg-3\">\n                        <a class=\"product-card\" href=\"/products/8631\">\n                            <div class=\"card px-0 border-0 shadow h-100 pb-4 rounded-4\">\n                                <img alt=\"Download file\" class=\"card-img img-product-thumbnail p-3 rounded-4 overflow-hidden\" src=\"/placeholder.webp\" />\n                                <div class=\"card-body text-decoration-none\">\n                                    <h5 class=\"card-title\">Buku editted</h5>\n                                    <p class=\"card-text text-black-50 text-small\">Baju</p>\n                                    <h5 class=\"card-text\">Rp 300.000</h5>\n                                </div>\n                            </div>\n                        </a>\n                    </div>\n                    <div class=\"col-12 col-md-4 col-lg-3\">\n                        <a class=\"product-card\" href=\"/products/8547\">\n                            <div class=\"card px-0 border-0 shadow h-100 pb-4 rounded-4\">\n                                <img class=\"card-img img-product-thumbnail p-3 rounded-4 overflow-hidden\" src=\"https://secondhand.binaracademy.org/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcCtsIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--68447c73e8a9992e331f045f330e82589f2e98a8/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUFXa0NBQUU9IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--b50863606d6ba2f597650ed7335384ba20cf4712/pngtree-vector.jpg\" />\n                                <div class=\"card-body text-decoration-none\">\n                                    <h5 class=\"card-title\">LNP_3370</h5>\n                                    <p class=\"card-text text-black-50 text-small\">Hobi</p>\n                                    <h5 class=\"card-text\">Rp 100.000</h5>\n                                </div>\n                            </div>\n                        </a>\n                    </div>\n                    <div class=\"col-12 col-md-4 col-lg-3\">\n                        <a class=\"product-card\" href=\"/products/8545\">\n                            <div class=\"card px-0 border-0 shadow h-100 pb-4 rounded-4\">\n                                <img class=\"card-img img-product-thumbnail p-3 rounded-4 overflow-hidden\" src=\"https://secondhand.binaracademy.org/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1dsIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--11b4fd2d2e13cb7010abfdb20ea8bbbe49f459f3/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUFXa0NBQUU9IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--b50863606d6ba2f597650ed7335384ba20cf4712/pngtree-vector.jpg\" />\n                                <div class=\"card-body text-decoration-none\">\n                                    <h5 class=\"card-title\">LNP_4280</h5>\n                                    <p class=\"card-text text-black-50 text-small\">Hobi</p>\n                                    <h5 class=\"card-text\">Rp 100.000</h5>\n                                </div>\n                            </div>\n                        </a>\n                    </div>\n                    <div class=\"col-12 col-md-4 col-lg-3\">\n                        <a class=\"product-card\" href=\"/products/8544\">\n                            <div class=\"card px-0 border-0 shadow h-100 pb-4 rounded-4\">\n                                <img class=\"card-img img-product-thumbnail p-3 rounded-4 overflow-hidden\" src=\"https://secondhand.binaracademy.org/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb0dsIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d55ee5236758541d0d08e6644baf4c533f49cd63/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUFXa0NBQUU9IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--b50863606d6ba2f597650ed7335384ba20cf4712/pngtree-vector.jpg\" />\n                                <div class=\"card-body text-decoration-none\">\n                                    <h5 class=\"card-title\">LNP_0629</h5>\n                                    <p class=\"card-text text-black-50 text-small\">Hobi</p>\n                                    <h5 class=\"card-text\">Rp 100.000</h5>\n                                </div>\n                            </div>\n                        </a>\n                    </div>\n                    <div class=\"col-12 col-md-4 col-lg-3\">\n                        <a class=\"product-card\" href=\"/products/8543\">\n                            <div class=\"card px-0 border-0 shadow h-100 pb-4 rounded-4\">\n                                <img class=\"card-img img-product-thumbnail p-3 rounded-4 overflow-hidden\" src=\"https://secondhand.binaracademy.org/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbjJsIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6ff5c019ef23564d086c77000e6c951f1de5284c/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUFXa0NBQUU9IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--b50863606d6ba2f597650ed7335384ba20cf4712/pngtree-vector.jpg\" />\n                                <div class=\"card-body text-decoration-none\">\n                                    <h5 class=\"card-title\">LNP_4726</h5>\n                                    <p class=\"card-text text-black-50 text-small\">Hobi</p>\n                                    <h5 class=\"card-text\">Rp 100.000</h5>\n                                </div>\n                            </div>\n                        </a>\n                    </div>\n                    <div role=\"navigation\" aria-label=\"Pagination\" class=\"d-flex gap-4 align-items-center justify-content-center my-5\">\n                        <span class=\"previous_page disabled\" aria-disabled=\"true\">&#8592; Previous</span>\n                        <a class=\"next_page\" rel=\"next\" href=\"/?page=2\">Next &#8594;</a>\n                    </div>\n                </div>\n            </section>\n            <div class=\"sticky-bottom d-flex align-items-center justify-content-center py-4\">\n                <a class=\"btn btn-primary btn-lg rounded-4 d-inline-flex align-items-center justify-content-space-between px-5\" href=\"/products/new\">\n                    <i class=\"bi bi-plus fs-2 me-3\"></i>\n                    <span class=\"fs-6\">Jual</span>\n                </a>\n            </div>\n        </section>\n    </body>\n</html>"
+						}
+					]
+				}
+			]
+		}
+	]
+}

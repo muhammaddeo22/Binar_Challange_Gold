@@ -1,0 +1,2177 @@
+{
+	"info": {
+		"_postman_id": "ec74fcea-8d7b-4211-a45b-0a65a4fb31d5",
+		"name": "Mobile Challange API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26161442"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"email_seller\", response.email);\r",
+									"\r",
+									"pm.globals.set(\"email_seller\", \"email\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function randomString(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
+									"    if (!minValue) {\r",
+									"        minValue = 5;\r",
+									"        maxValue = 10;\r",
+									"    }\r",
+									"\r",
+									"    if (!maxValue) {\r",
+									"        maxValue = minValue;\r",
+									"    }\r",
+									"\r",
+									"    let length = _.random(minValue, maxValue),\r",
+									"        randomString = \"\";\r",
+									"\r",
+									"    for (let i = 0; i < length; i++)\r",
+									"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
+									"    return randomString;\r",
+									"}\r",
+									"\r",
+									"pm.variables.set('randomString', randomString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "full_name",
+									"value": "Penjual",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{randomString}}@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "089989489",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Jl Jakarta",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg",
+									"disabled": true
+								},
+								{
+									"key": "city",
+									"value": "DKI Jakarta",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobile_challange}}/auth/register",
+							"host": [
+								"{{mobile_challange}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "full_name",
+											"value": "Penjual",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{randomString}}@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "089989489",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Jl Jakarta",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg",
+											"disabled": true
+										},
+										{
+											"key": "city",
+											"value": "DKI Jakarta",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobile_challange}}/auth/register",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 13:21:45 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "296"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"128-2V962RrcRPoem0sZ6k/Vdz2IlQo\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2742,\n    \"full_name\": \"Penjual\",\n    \"email\": \"6yjVVfjG@gmail.com\",\n    \"password\": \"$2b$10$wQ7ys4GQrj/Zyz8yJNcOc.0LLTE17IsSM.vchRO1qEX.xMEWJcPFy\",\n    \"updatedAt\": \"2023-06-19T13:21:45.405Z\",\n    \"createdAt\": \"2023-06-19T13:21:45.405Z\",\n    \"phone_number\": null,\n    \"image_name\": null,\n    \"image_url\": null,\n    \"address\": null,\n    \"city\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Register Buyer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"email_buyer\", response.email);\r",
+									"\r",
+									"pm.globals.set(\"email_buyer\", \"email\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function randomString(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
+									"    if (!minValue) {\r",
+									"        minValue = 5;\r",
+									"        maxValue = 10;\r",
+									"    }\r",
+									"\r",
+									"    if (!maxValue) {\r",
+									"        maxValue = minValue;\r",
+									"    }\r",
+									"\r",
+									"    let length = _.random(minValue, maxValue),\r",
+									"        randomString = \"\";\r",
+									"\r",
+									"    for (let i = 0; i < length; i++)\r",
+									"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
+									"    return randomString;\r",
+									"}\r",
+									"\r",
+									"pm.variables.set('randomString', randomString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "full_name",
+									"value": "Pembeli",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{randomString}}@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "08123456789",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "juanda",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg",
+									"disabled": true
+								},
+								{
+									"key": "city",
+									"value": "jakarta",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{mobile_challange}}/auth/register",
+							"host": [
+								"{{mobile_challange}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register Buyer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "full_name",
+											"value": "Pembeli",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{randomString}}@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "08123456789",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "juanda",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg",
+											"disabled": true
+										},
+										{
+											"key": "city",
+											"value": "jakarta",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobile_challange}}/auth/register",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 13:23:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "294"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"126-X/Jw0b35C/gvnyAKzLb7PJuCY4s\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2744,\n    \"full_name\": \"Pembeli\",\n    \"email\": \"iUgZWC@gmail.com\",\n    \"password\": \"$2b$10$QsTPw2ocZcXe4wR7u2hJc.6RjAEQQlJ6a8JPiKH.4OfKd.1N2wpa2\",\n    \"updatedAt\": \"2023-06-19T13:23:54.404Z\",\n    \"createdAt\": \"2023-06-19T13:23:54.404Z\",\n    \"phone_number\": null,\n    \"image_name\": null,\n    \"image_url\": null,\n    \"address\": null,\n    \"city\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"token_seller\", response.access_token);\r",
+									"\r",
+									"pm.globals.set(\"token_seller\", \"access_token\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{email_seller}}\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mobile_challange}}/auth/login",
+							"host": [
+								"{{mobile_challange}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"{{email_seller}}\",\r\n  \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobile_challange}}/auth/login",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 13:22:11 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "219"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"db-tvJw+1A3z+bayPAeFdYphGbBKCs\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2742,\n    \"name\": \"Penjual\",\n    \"email\": \"6yjVVfjG@gmail.com\",\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjZ5alZWZmpHQGdtYWlsLmNvbSIsImlhdCI6MTY4NzE4MDkzMX0.vKeJBymlFIOqghrooslowxZOFKON-b90Awf-PYUpIIU\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login Buyer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"token_buyer\", response.access_token);\r",
+									"\r",
+									"pm.globals.set(\"token_buyer\", \"access_token\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{email_buyer}}\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mobile_challange}}/auth/login",
+							"host": [
+								"{{mobile_challange}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login Buyer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"{{email_buyer}}\",\r\n  \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobile_challange}}/auth/login",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Jun 2023 13:27:38 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "214"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d6-JF5FgMI9mIZYhZ7ozjtsUdI1X9s\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2744,\n    \"name\": \"Pembeli\",\n    \"email\": \"iUgZWC@gmail.com\",\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImlVZ1pXQ0BnbWFpbC5jb20iLCJpYXQiOjE2ODcxODEyNTh9.69DWVsgs7yladm_0hO7MHcBjsdK7aMGOXDliaO50l_U\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sell",
+			"item": [
+				{
+					"name": "Seller Product",
+					"item": [
+						{
+							"name": "Upload Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"var response = pm.response.json();\r",
+											"\r",
+											"pm.environment.set(\"product_id\", response.id);\r",
+											"\r",
+											"pm.globals.set(\"product_id\", \"id\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "access_token",
+										"value": "{{token_seller}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Laptop 2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Laptop Murah Parah",
+											"type": "text"
+										},
+										{
+											"key": "base_price",
+											"value": "10000",
+											"type": "text"
+										},
+										{
+											"key": "category_ids",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "Jonggol",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobile_challange}}/seller/product",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"seller",
+										"product"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Upload Product",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "access_token",
+												"value": "{{token_seller}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Laptop 2",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "Laptop Murah Parah",
+													"type": "text"
+												},
+												{
+													"key": "base_price",
+													"value": "10000",
+													"type": "text"
+												},
+												{
+													"key": "category_ids",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "location",
+													"value": "Jonggol",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{mobile_challange}}/seller/product",
+											"host": [
+												"{{mobile_challange}}"
+											],
+											"path": [
+												"seller",
+												"product"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 19 Jun 2023 13:30:21 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "401"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"191-NE4K/r8pca5nu6iwU/e6uB5t2mw\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 3224,\n    \"name\": \"Laptop 2\",\n    \"description\": \"Laptop Murah Parah\",\n    \"base_price\": 10000,\n    \"location\": \"Jonggol\",\n    \"user_id\": 2742,\n    \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181420405-sample-6.jpg?alt=media\",\n    \"image_name\": \"1687181420405-sample-6.jpg\",\n    \"updatedAt\": \"2023-06-19T13:30:20.689Z\",\n    \"createdAt\": \"2023-06-19T13:30:20.689Z\",\n    \"status\": \"available\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Upload Product Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"var response = pm.response.json();\r",
+											"\r",
+											"pm.environment.set(\"product_iddel\", response.id);\r",
+											"\r",
+											"pm.globals.set(\"product_iddel\", \"id\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "access_token",
+										"value": "{{token_seller}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Laptop 2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Laptop Murah Parah",
+											"type": "text"
+										},
+										{
+											"key": "base_price",
+											"value": "10000",
+											"type": "text"
+										},
+										{
+											"key": "category_ids",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "Jonggol",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobile_challange}}/seller/product",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"seller",
+										"product"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Upload Product Copy",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "access_token",
+												"value": "{{token_seller}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Laptop 2",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "Laptop Murah Parah",
+													"type": "text"
+												},
+												{
+													"key": "base_price",
+													"value": "10000",
+													"type": "text"
+												},
+												{
+													"key": "category_ids",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "location",
+													"value": "Jonggol",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": "/C:/Users/USER/Downloads/Data Sample/Image/sample-6.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{mobile_challange}}/seller/product",
+											"host": [
+												"{{mobile_challange}}"
+											],
+											"path": [
+												"seller",
+												"product"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 19 Jun 2023 13:33:04 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "401"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"191-9Yr5+Gnu2dxFGLEb5yFGgPnhyWw\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 3226,\n    \"name\": \"Laptop 2\",\n    \"description\": \"Laptop Murah Parah\",\n    \"base_price\": 10000,\n    \"location\": \"Jonggol\",\n    \"user_id\": 2742,\n    \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181583836-sample-6.jpg?alt=media\",\n    \"image_name\": \"1687181583836-sample-6.jpg\",\n    \"updatedAt\": \"2023-06-19T13:33:04.120Z\",\n    \"createdAt\": \"2023-06-19T13:33:04.120Z\",\n    \"status\": \"available\"\n}"
+								}
+							]
+						},
+						{
+							"name": "See Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "access_token",
+										"value": "{{token_seller}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{mobile_challange}}/seller/product",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"seller",
+										"product"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "See Product",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "access_token",
+												"value": "{{token_seller}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{mobile_challange}}/seller/product",
+											"host": [
+												"{{mobile_challange}}"
+											],
+											"path": [
+												"seller",
+												"product"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 19 Jun 2023 13:34:04 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1785"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"6f9-1ZQ3/QsJ9QKQHkWVIB4tfvPZtY0\""
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 3224,\n        \"name\": \"Laptop 2\",\n        \"description\": \"Laptop Murah Parah\",\n        \"base_price\": 10000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181420405-sample-6.jpg?alt=media\",\n        \"image_name\": \"1687181420405-sample-6.jpg\",\n        \"location\": \"Jonggol\",\n        \"user_id\": 2742,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-19T13:30:20.689Z\",\n        \"updatedAt\": \"2023-06-19T13:30:20.689Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    },\n    {\n        \"id\": 3225,\n        \"name\": \"Laptop 2\",\n        \"description\": \"Laptop Murah Parah\",\n        \"base_price\": 10000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181488086-sample-6.jpg?alt=media\",\n        \"image_name\": \"1687181488086-sample-6.jpg\",\n        \"location\": \"Jonggol\",\n        \"user_id\": 2742,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-19T13:31:28.367Z\",\n        \"updatedAt\": \"2023-06-19T13:31:28.367Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    },\n    {\n        \"id\": 3226,\n        \"name\": \"Laptop 2\",\n        \"description\": \"Laptop Murah Parah\",\n        \"base_price\": 10000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181583836-sample-6.jpg?alt=media\",\n        \"image_name\": \"1687181583836-sample-6.jpg\",\n        \"location\": \"Jonggol\",\n        \"user_id\": 2742,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-19T13:33:04.120Z\",\n        \"updatedAt\": \"2023-06-19T13:33:04.120Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    },\n    {\n        \"id\": 3227,\n        \"name\": \"Laptop 2\",\n        \"description\": \"Laptop Murah Parah\",\n        \"base_price\": 10000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181596336-sample-6.jpg?alt=media\",\n        \"image_name\": \"1687181596336-sample-6.jpg\",\n        \"location\": \"Jonggol\",\n        \"user_id\": 2742,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-19T13:33:16.586Z\",\n        \"updatedAt\": \"2023-06-19T13:33:16.586Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "See Product By ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "access_token",
+										"value": "{{token_seller}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{mobile_challange}}/seller/product/:id",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"seller",
+										"product",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{product_id}}"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "See Product By ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "access_token",
+												"value": "{{token_seller}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{mobile_challange}}/seller/product/:id",
+											"host": [
+												"{{mobile_challange}}"
+											],
+											"path": [
+												"seller",
+												"product",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{product_id}}"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 19 Jun 2023 13:36:23 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "445"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1bd-7WHaHFtU3bwKqHCaJFqnzwIy/cY\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 3227,\n    \"name\": \"Laptop 2\",\n    \"description\": \"Laptop Murah Parah\",\n    \"base_price\": 10000,\n    \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181596336-sample-6.jpg?alt=media\",\n    \"image_name\": \"1687181596336-sample-6.jpg\",\n    \"location\": \"Jonggol\",\n    \"user_id\": 2742,\n    \"status\": \"available\",\n    \"createdAt\": \"2023-06-19T13:33:16.586Z\",\n    \"updatedAt\": \"2023-06-19T13:33:16.586Z\",\n    \"Categories\": [\n        {\n            \"id\": 1,\n            \"name\": \"Elektronik\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "access_token",
+										"value": "{{token_seller}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{mobile_challange}}/seller/product/:id",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"seller",
+										"product",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{product_iddel}}"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete Product",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "access_token",
+												"value": "{{token_seller}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{mobile_challange}}/seller/product/:id",
+											"host": [
+												"{{mobile_challange}}"
+											],
+											"path": [
+												"seller",
+												"product",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{product_iddel}}"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 19 Jun 2023 13:37:16 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "46"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2e-ilaVDX22URNugUcJ6MFd2mUBTdM\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"name\": \"OK\",\n    \"msg\": \"Product has been deleted\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Buy",
+			"item": [
+				{
+					"name": "Buyer Product",
+					"item": [
+						{
+							"name": "See Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "body",
+										"type": "text"
+									},
+									{
+										"key": "access_token",
+										"value": "{{token_buyer}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "available",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "category_id",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "bola",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "per_page",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{mobile_challange}}/buyer/product?status=available&category_id=1&search=Laptop&page=1&per_page=10",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"buyer",
+										"product"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "available"
+										},
+										{
+											"key": "category_id",
+											"value": "1"
+										},
+										{
+											"key": "search",
+											"value": "Laptop"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "See Product",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "body",
+												"type": "text"
+											},
+											{
+												"key": "access_token",
+												"value": "{{token_buyer}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "status",
+													"value": "available",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "search",
+													"value": "bola",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "per_page",
+													"value": "1",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{mobile_challange}}/buyer/product?status=available&category_id=1&search=Laptop&page=1&per_page=10",
+											"host": [
+												"{{mobile_challange}}"
+											],
+											"path": [
+												"buyer",
+												"product"
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "available"
+												},
+												{
+													"key": "category_id",
+													"value": "1"
+												},
+												{
+													"key": "search",
+													"value": "Laptop"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "per_page",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 19 Jun 2023 13:38:44 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "4090"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"ffa-47iY1ysBHxtyZXlGrM1TiTMTVeE\""
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 996,\n        \"name\": \"laptop\",\n        \"description\": \"laptop\",\n        \"base_price\": 90000000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687077136666-photo_6327591256829572595_y.jpg?alt=media\",\n        \"image_name\": \"1687077136666-photo_6327591256829572595_y.jpg\",\n        \"location\": \"jakarta\",\n        \"user_id\": 512,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-18T08:32:16.902Z\",\n        \"updatedAt\": \"2023-06-18T08:32:16.902Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    },\n    {\n        \"id\": 998,\n        \"name\": \"laptop\",\n        \"description\": \"laptop\",\n        \"base_price\": 90000000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687077549063-photo_6327591256829572595_y.jpg?alt=media\",\n        \"image_name\": \"1687077549063-photo_6327591256829572595_y.jpg\",\n        \"location\": \"jakarta\",\n        \"user_id\": 512,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-18T08:39:09.301Z\",\n        \"updatedAt\": \"2023-06-18T08:39:09.301Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    },\n    {\n        \"id\": 999,\n        \"name\": \"laptop\",\n        \"description\": \"laptop\",\n        \"base_price\": 90000000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687079234483-Screenshot_(5).png?alt=media\",\n        \"image_name\": \"1687079234483-Screenshot_(5).png\",\n        \"location\": \"jakarta\",\n        \"user_id\": 512,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-18T09:07:14.734Z\",\n        \"updatedAt\": \"2023-06-18T09:07:14.734Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    },\n    {\n        \"id\": 1000,\n        \"name\": \"laptop\",\n        \"description\": \"laptop\",\n        \"base_price\": 90000000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687079278686-Screenshot_(5).png?alt=media\",\n        \"image_name\": \"1687079278686-Screenshot_(5).png\",\n        \"location\": \"jakarta\",\n        \"user_id\": 512,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-18T09:07:58.926Z\",\n        \"updatedAt\": \"2023-06-18T09:07:58.926Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    },\n    {\n        \"id\": 1002,\n        \"name\": \"laptop\",\n        \"description\": \"laptop\",\n        \"base_price\": 90000000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687080588318-Screenshot_(30).png?alt=media\",\n        \"image_name\": \"1687080588318-Screenshot_(30).png\",\n        \"location\": \"jakarta\",\n        \"user_id\": 512,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-18T09:29:48.555Z\",\n        \"updatedAt\": \"2023-06-18T09:29:48.555Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    },\n    {\n        \"id\": 1924,\n        \"name\": \"Laptop\",\n        \"description\": \"Laptop baru alhamdulillah wa syukurilah\",\n        \"base_price\": 59000000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687142601224-Click.png?alt=media\",\n        \"image_name\": \"1687142601224-Click.png\",\n        \"location\": \"Jakarta pinggir\",\n        \"user_id\": 1585,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-19T02:43:21.473Z\",\n        \"updatedAt\": \"2023-06-19T02:43:21.473Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    },\n    {\n        \"id\": 3224,\n        \"name\": \"Laptop 2\",\n        \"description\": \"Laptop Murah Parah\",\n        \"base_price\": 10000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181420405-sample-6.jpg?alt=media\",\n        \"image_name\": \"1687181420405-sample-6.jpg\",\n        \"location\": \"Jonggol\",\n        \"user_id\": 2742,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-19T13:30:20.689Z\",\n        \"updatedAt\": \"2023-06-19T13:30:20.689Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    },\n    {\n        \"id\": 3225,\n        \"name\": \"Laptop 2\",\n        \"description\": \"Laptop Murah Parah\",\n        \"base_price\": 10000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181488086-sample-6.jpg?alt=media\",\n        \"image_name\": \"1687181488086-sample-6.jpg\",\n        \"location\": \"Jonggol\",\n        \"user_id\": 2742,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-19T13:31:28.367Z\",\n        \"updatedAt\": \"2023-06-19T13:31:28.367Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    },\n    {\n        \"id\": 3227,\n        \"name\": \"Laptop 2\",\n        \"description\": \"Laptop Murah Parah\",\n        \"base_price\": 10000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181596336-sample-6.jpg?alt=media\",\n        \"image_name\": \"1687181596336-sample-6.jpg\",\n        \"location\": \"Jonggol\",\n        \"user_id\": 2742,\n        \"status\": \"available\",\n        \"createdAt\": \"2023-06-19T13:33:16.586Z\",\n        \"updatedAt\": \"2023-06-19T13:33:16.586Z\",\n        \"Categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"Elektronik\"\n            }\n        ]\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "See Product By ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "body",
+										"type": "text"
+									},
+									{
+										"key": "access_token",
+										"value": "{{token_buyer}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{mobile_challange}}/buyer/product/:id",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"buyer",
+										"product",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{product_id}}"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "See Product By ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "body",
+												"type": "text"
+											},
+											{
+												"key": "access_token",
+												"value": "{{token_buyer}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{mobile_challange}}/buyer/product/:id",
+											"host": [
+												"{{mobile_challange}}"
+											],
+											"path": [
+												"buyer",
+												"product",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{product_id}}"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 19 Jun 2023 13:40:16 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "597"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"255-Fns78IbAlEFp0oOIGgVXSnLdBq8\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 3227,\n    \"name\": \"Laptop 2\",\n    \"description\": \"Laptop Murah Parah\",\n    \"base_price\": 10000,\n    \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181596336-sample-6.jpg?alt=media\",\n    \"image_name\": \"1687181596336-sample-6.jpg\",\n    \"location\": \"Jonggol\",\n    \"user_id\": 2742,\n    \"status\": \"available\",\n    \"createdAt\": \"2023-06-19T13:33:16.586Z\",\n    \"updatedAt\": \"2023-06-19T13:33:16.586Z\",\n    \"Categories\": [\n        {\n            \"id\": 1,\n            \"name\": \"Elektronik\"\n        }\n    ],\n    \"User\": {\n        \"id\": 2742,\n        \"full_name\": \"Penjual\",\n        \"email\": \"6yjVVfjG@gmail.com\",\n        \"phone_number\": null,\n        \"image_name\": null,\n        \"image_url\": null,\n        \"address\": null,\n        \"city\": null\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Buyer Order",
+					"item": [
+						{
+							"name": "Buy Order Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"var response = pm.response.json();\r",
+											"\r",
+											"pm.environment.set(\"id_order\", response.id);\r",
+											"\r",
+											"pm.globals.set(\"id_order\", \"id\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "access_token",
+										"value": "{{token_buyer}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"product_id\": {{product_id}},\r\n  \"bid_price\": 1000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobile_challange}}/buyer/order",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"buyer",
+										"order"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Buy Order Product",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "access_token",
+												"value": "{{token_buyer}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"product_id\": {{product_id}},\r\n  \"bid_price\": 1000000\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mobile_challange}}/buyer/order",
+											"host": [
+												"{{mobile_challange}}"
+											],
+											"path": [
+												"buyer",
+												"order"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 19 Jun 2023 13:44:55 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "208"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"d0-CJS1DN6JfHi/E6xEsApcAl05Hok\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1508,\n    \"buyer_id\": 2744,\n    \"product_id\": 3228,\n    \"bid_price\": 1000000,\n    \"transaction_date\": \"2023-06-19T13:44:55.280Z\",\n    \"updatedAt\": \"2023-06-19T13:44:55.280Z\",\n    \"createdAt\": \"2023-06-19T13:44:55.280Z\",\n    \"status\": \"pending\"\n}"
+								}
+							]
+						},
+						{
+							"name": "See Order Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// var response = pm.response.json();\r",
+											"\r",
+											"// pm.environment.set(\"id_buyer\", response.product_id;\r",
+											"\r",
+											"// pm.globals.set(\"id_buyer\", \"product_id\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "access_token",
+										"value": "{{token_buyer}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{mobile_challange}}/buyer/order",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"buyer",
+										"order"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "See Order Product",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "access_token",
+												"value": "{{token_buyer}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{mobile_challange}}/buyer/order",
+											"host": [
+												"{{mobile_challange}}"
+											],
+											"path": [
+												"buyer",
+												"order"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 19 Jun 2023 13:41:27 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "724"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2d4-T1MxJw9ST4MVi2HhNkrPF2GCnaw\""
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1507,\n        \"product_id\": 3227,\n        \"buyer_id\": 2744,\n        \"bid_price\": 1000000,\n        \"transaction_date\": \"2023-06-19T13:41:02.030Z\",\n        \"status\": \"pending\",\n        \"Product\": {\n            \"name\": \"Laptop 2\",\n            \"description\": \"Laptop Murah Parah\",\n            \"base_price\": 10000,\n            \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687181596336-sample-6.jpg?alt=media\",\n            \"image_name\": \"1687181596336-sample-6.jpg\",\n            \"location\": \"Jonggol\",\n            \"user_id\": 2742,\n            \"status\": \"available\",\n            \"User\": {\n                \"id\": 2742,\n                \"full_name\": \"Penjual\",\n                \"email\": \"6yjVVfjG@gmail.com\",\n                \"phone_number\": null,\n                \"image_name\": null,\n                \"address\": null,\n                \"city\": null\n            }\n        },\n        \"User\": {\n            \"id\": 2744,\n            \"full_name\": \"Pembeli\",\n            \"email\": \"iUgZWC@gmail.com\",\n            \"phone_number\": null,\n            \"image_name\": null,\n            \"address\": null,\n            \"city\": null\n        }\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "See Order By ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "access_token",
+										"value": "{{token_buyer}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{mobile_challange}}/buyer/order/:id",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"buyer",
+										"order",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{id_order}}"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "See Order By ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "access_token",
+												"value": "{{token_buyer}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{mobile_challange}}/buyer/order/:id",
+											"host": [
+												"{{mobile_challange}}"
+											],
+											"path": [
+												"buyer",
+												"order",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{id_order}}"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 19 Jun 2023 13:49:50 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "722"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2d2-g84aelDA5G/MDZGvzNqOidxP7GQ\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1508,\n    \"product_id\": 3228,\n    \"buyer_id\": 2744,\n    \"bid_price\": 1000000,\n    \"transaction_date\": \"2023-06-19T13:44:55.280Z\",\n    \"status\": \"pending\",\n    \"Product\": {\n        \"name\": \"Laptop 2\",\n        \"description\": \"Laptop Murah Parah\",\n        \"base_price\": 10000,\n        \"image_url\": \"https://firebasestorage.googleapis.com/v0/b/km-sib-2---secondhand.appspot.com/o/product%2F1687182286530-sample-6.jpg?alt=media\",\n        \"image_name\": \"1687182286530-sample-6.jpg\",\n        \"location\": \"Jonggol\",\n        \"user_id\": 2742,\n        \"status\": \"available\",\n        \"User\": {\n            \"id\": 2742,\n            \"full_name\": \"Penjual\",\n            \"email\": \"6yjVVfjG@gmail.com\",\n            \"phone_number\": null,\n            \"image_name\": null,\n            \"address\": null,\n            \"city\": null\n        }\n    },\n    \"User\": {\n        \"id\": 2744,\n        \"full_name\": \"Pembeli\",\n        \"email\": \"iUgZWC@gmail.com\",\n        \"phone_number\": null,\n        \"image_name\": null,\n        \"address\": null,\n        \"city\": null\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Change Offer Order By ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "access_token",
+										"value": "{{token_buyer}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"bid_price\": 200000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mobile_challange}}/buyer/order/:id",
+									"host": [
+										"{{mobile_challange}}"
+									],
+									"path": [
+										"buyer",
+										"order",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{id_order}}"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Change Offer Order By ID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "access_token",
+												"value": "{{token_buyer}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"bid_price\": 200000\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mobile_challange}}/buyer/order/:id",
+											"host": [
+												"{{mobile_challange}}"
+											],
+											"path": [
+												"buyer",
+												"order",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{id_order}}"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 19 Jun 2023 13:51:00 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "207"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"cf-aezbSNb4hx2U4dpdwCpwEHP//8Y\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1508,\n    \"product_id\": 3228,\n    \"buyer_id\": 2744,\n    \"bid_price\": 200000,\n    \"transaction_date\": \"2023-06-19T13:44:55.280Z\",\n    \"status\": \"pending\",\n    \"createdAt\": \"2023-06-19T13:44:55.280Z\",\n    \"updatedAt\": \"2023-06-19T13:50:59.445Z\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
